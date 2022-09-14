@@ -3,8 +3,12 @@
 include_once("../Framework/HttpRequest.php");
 include_once("../Framework/Route.php");
 include_once("../Framework/View.php");
-include_once("../Controllers/BasicController.php");
 include_once("../Config/routes.php");
+
+foreach (glob("../Controllers/*.php") as $filename)
+{
+    include_once($filename);
+}
 
 $request = new HttpRequest();
 
@@ -29,4 +33,3 @@ if (!isset($view)) {
 }
 
 var_dump($view);
-die();
