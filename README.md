@@ -14,6 +14,8 @@ Composants d'un framework :
 
 ## Choix de l'équipe
 
+Développé avec PHP7.4
+
 Architecture logicielle :
 MVC
 
@@ -26,6 +28,9 @@ Fonctionnalités :
 - - -
 
 ## Équipe et contraintes
+
+Nom du groupe :
+Équipe 13 - SINJ Framework
 
 Contributors :
 - François CHEVAL
