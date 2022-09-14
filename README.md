@@ -22,7 +22,7 @@ MVC
 Fonctionnalités :
 - Routeur de routes
 - Contrôleurs
-- Autoloader
+- Autoloader et namespaces
 - Moteur de templating
 - Routes annotées
 - ORM (opt.)

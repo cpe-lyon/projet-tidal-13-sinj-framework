@@ -1,5 +1,7 @@
 <?php
-include_once ('../Framework/HttpRequest.php');
+
+use Framework\View;
+use Framework\HttpRequest;
 
 class BasicController
 {

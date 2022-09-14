@@ -1,8 +1,8 @@
 <?php
 
-include_once("../Framework/Route.php");
+use Framework\Route;
 
-$routes = [
+return [
     new Route('GET', '/aled', BasicController::class, 'test'),
     new Route('POST', '/mp', BasicController::class, 'mp'),
 ];
