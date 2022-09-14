@@ -20,6 +20,9 @@ Architecture logicielle :
 MVC
 
 Fonctionnalités :
+- Router
+- Controllers
+- Autoloader
 - Moteur de templating
 - Routes annotées
 - ORM (opt.)
