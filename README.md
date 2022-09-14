@@ -29,7 +29,7 @@ Fonctionnalités :
 
 Contributors :
 - François CHEVAL
-- Mathis EMILE
+- Mathias EMILE
 - Tanguy FROUIN
 - Julien CAPOSIENA
 
