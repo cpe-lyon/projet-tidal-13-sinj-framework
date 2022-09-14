@@ -15,12 +15,12 @@ class HttpRequest
             $this->params = $_POST;
         }
         // Parses the GET methods params
-        elseif ($_SERVER['REQUEST_METHOD'] == "GET") {
+        elseif (isset($_SERVER['QUERY_STRING']) && $_SERVER['REQUEST_METHOD'] == "GET") {
             $rawParams = explode('&', $_SERVER['QUERY_STRING']);
 
             foreach ($rawParams as $param) {
                 $rawParam = explode('=', $param, 2);
-                $this->params[$rawParam[0]] = $rawParam[1];
+                $this->params[$rawParam[0]] = $rawParam[1] ?? null;
             }
         }
     }
