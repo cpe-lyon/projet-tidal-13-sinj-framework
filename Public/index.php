@@ -33,33 +33,39 @@ foreach ($routes as $route) {
             // Calls the function associated with the controller that was defined by the user in routes.php
             $controllerName = $route->getController();
             $controller = new $controllerName;
-            $view = $controller->{$route->getFunction()}($request);
+            $result = $controller->{$route->getFunction()}($request);
+            break;
         }
         else {
             // If the route was found but the client methods is not corresponding, loads 405 error page
-            $view = new View('error', ['code' => 405 , 'message' => 'Bad method for route ' . $request->getUrl()]);
+            $result = new View('error', ['code' => 405 , 'message' => 'Bad method for route ' . $request->getUrl()]);
         }
     }
 }
 
 // If no view was returned, loads 404 error page
-if (!isset($view)) {
-    $view = new View('error', ['code' => 404 , 'message' => 'No route mapped for ' . $request->getUrl()]);
+if (!isset($result)) {
+    $result = new View('error', ['code' => 404 , 'message' => 'No route mapped for ' . $request->getUrl()]);
 }
 
-
-/* Checking if the view name exists in the views mapping array. 
-* If it does, it gets the html name from the views mapping, 
-* gets the html string from the html file, 
-* replaces the %APP_NAME% with the string "test" and then echoes the html in order to display it. 
-*/
-if( array_key_exists($view->getName(), $mappingViews) ) {
-    $htmlName = $mappingViews[$view->getName()];
-    $template = file_get_contents("../template.html");
-    $content = file_get_contents("../Views/".$htmlName);
-    $html = str_replace("%APP_NAME%", APP_NAME, $template);
-    $html = str_replace("%DATA%",$content,$html);
-    echo($html);
+// If the returned data from the controller is a View
+if ($result instanceof View) {
+    
+    /* Checking if the view name exists in the views mapping array. 
+    * If it does, it gets the html name from the views mapping, 
+    * gets the html string from the html file, 
+    * replaces the %APP_NAME% with the string "test" and then echoes the html in order to display it. 
+    */
+    if( array_key_exists($result->getName(), $mappingViews) ) {
+        $htmlName = $mappingViews[$result->getName()];
+        $template = file_get_contents("../template.html");
+        $content = file_get_contents("../Views/".$htmlName);
+        $html = str_replace("%APP_NAME%", APP_NAME, $template);
+        $html = str_replace("%DATA%",$content,$html);
+        echo($html);
+    }
+} // Otherwise it will be returned as JSON data
+else {
+    header('Content-Type: application/json; charset=UTF-8');
+    echo json_encode($result);
 }
-
-
