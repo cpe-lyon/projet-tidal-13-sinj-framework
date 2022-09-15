@@ -7,6 +7,7 @@ require(__DIR__ . '/../autoloader.php');
 use Framework\View;
 use Framework\Route;
 use Framework\HttpRequest;
+include("../Config/config.php");
 
 // Import every user controller
 foreach (glob("../Controllers/*.php") as $filename)
@@ -16,6 +17,7 @@ foreach (glob("../Controllers/*.php") as $filename)
 
 // Get every user defined route
 $routes = require("../Config/routes.php");
+$mappingViews = require("../Config/views.php");
 
 // Get client request
 $request = new HttpRequest();
@@ -45,4 +47,19 @@ if (!isset($view)) {
     $view = new View('error', ['code' => 404 , 'message' => 'No route mapped for ' . $request->getUrl()]);
 }
 
-var_dump($view);
+
+/* Checking if the view name exists in the views mapping array. 
+* If it does, it gets the html name from the views mapping, 
+* gets the html string from the html file, 
+* replaces the %APP_NAME% with the string "test" and then echoes the html in order to display it. 
+*/
+if( array_key_exists($view->getName(), $mappingViews) ) {
+    $htmlName = $mappingViews[$view->getName()];
+    $template = file_get_contents("../template.html");
+    $content = file_get_contents("../Views/".$htmlName);
+    $html = str_replace("%APP_NAME%", APP_NAME, $template);
+    $html = str_replace("%DATA%",$content,$html);
+    echo($html);
+}
+
+
