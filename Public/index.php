@@ -45,23 +45,61 @@ foreach ($routes as $route) {
 
 // If no view was returned, loads 404 error page
 if (!isset($result)) {
-    $result = new View('error', ['code' => 404 , 'message' => 'No route mapped for ' . $request->getUrl()]);
+    $result = new View('error404', ['code' => 404 , 'message' => 'No route mapped for ' . $request->getUrl()]);
 }
 
 // If the returned data from the controller is a View
 if ($result instanceof View) {
-    
     /* Checking if the view name exists in the views mapping array. 
     * If it does, it gets the html name from the views mapping, 
     * gets the html string from the html file, 
     * replaces the %APP_NAME% with the string "test" and then echoes the html in order to display it. 
     */
     if( array_key_exists($result->getName(), $mappingViews) ) {
-        $htmlName = $mappingViews[$result->getName()];
+
+        $name = $mappingViews[$result->getName()];
+
+        //APP_NAME manager
+        $htmlName = $name['html'];
         $template = file_get_contents("../template.html");
+        $html = str_replace("%APPNAME%", APPNAME, $template);
+        $css = "";
+
+        // if css scripts exist, include it
+        if( !empty( $name['css'] ) ) {
+            $cssArray = $name['css'];
+            
+            foreach($cssArray as $cssName){
+                $css .= '<link rel="stylesheet" href="./style/css/'.$cssName.'">';
+            }
+        }
+        $html = str_replace("%CSS%", $css, $html); 
+        
+        $headjs = "";
+        // if head js scripts exist, include it
+        if( !empty( $name['js']['headjs'] ) ) {
+            $jsArray = $name['js']['headjs'];
+            
+            foreach($jsArray as $jsName) {
+                $headjs .= '<script type="text/javascript" src="./scripts/'.$jsName.'"></script>';
+            }
+        }
+        $html = str_replace("%HEADJS%", $headjs, $html); 
+        
+        //APP
         $content = file_get_contents("../Views/".$htmlName);
-        $html = str_replace("%APP_NAME%", APP_NAME, $template);
         $html = str_replace("%DATA%",$content,$html);
+
+        $bottomjs = "";
+        // if bottom js scripts exist, include it
+        if( !empty( $name['js']['bottomjs'] ) ) {
+            $jsArray = $name['js']['bottomjs'];
+            
+            foreach($jsArray as $jsName) {
+                $bottomjs .= '<script type="text/javascript" src="./scripts/'.$jsName.'"></script>';
+            }
+        }
+        $html = str_replace("%BOTTOMJS%", $bottomjs, $html);
         echo($html);
     }
 } // Otherwise it will be returned as JSON data

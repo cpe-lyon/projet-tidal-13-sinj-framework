@@ -1,0 +1,9 @@
+body {
+    background-color: forestgreen;
+    background-image: url('../../images/jungle_404.jpg');
+}
+
+img {
+    margin-left: 25%;
+    width: 50%;
+}

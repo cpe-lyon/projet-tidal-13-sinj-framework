@@ -1,3 +1,3 @@
 <?php
-define('APP_NAME',"JOSHUA");
+define('APPNAME',"JOSHUA");
 ?>
