@@ -1,5 +1,8 @@
 <?php
 
+// Database config
+require('../Config/database.php');
+
 // Autoloader
 require(__DIR__ . '/../autoloader.php');
 
