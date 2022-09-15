@@ -2,7 +2,7 @@
 
 // Application configuration files
 require('../Config/database.php');
-include("../Config/config.php");
+require("../Config/config.php");
 
 // Autoloader
 require(__DIR__ . '/../autoloader.php');
