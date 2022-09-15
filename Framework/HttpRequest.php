@@ -2,7 +2,7 @@
 
 namespace Framework;
 
-class HttpRequest
+final class HttpRequest
 {
     private $url;
     private $method;

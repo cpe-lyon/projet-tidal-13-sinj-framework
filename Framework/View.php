@@ -2,7 +2,7 @@
 
 namespace Framework;
 
-class View
+final class View
 {
     private string $name;
     private array $values;

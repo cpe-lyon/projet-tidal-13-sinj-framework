@@ -7,7 +7,7 @@ use PDO;
 abstract class Model
 {
     /**
-     * Table name that references this model
+     * Database table that references this model
      * @var string
      */
     public static string $table;
@@ -15,10 +15,11 @@ abstract class Model
     /**
      * Inserts the model instance in the database. Returns the new row if the insert was successful, otherwise returns false.
      * @return \stdClass|false|\Exception
+     * @throws \Exception
      */
     public final function create() {
         try {
-            $db = new PDO('pgsql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';port=' . DB_PORT, DB_USER, DB_PASSWORD);
+            $db = Database::connect();
 
             $fields = '(' . implode(',', array_keys((array)$this)) . ')';
             $values = '';
@@ -44,21 +45,25 @@ abstract class Model
         }
         catch (\Exception $e) {
             echo $e->getMessage() . "\n";
-            return $e;
+            throw $e;
         }
     }
 
     public static final function getAll() {
         try {
-            $db = new PDO('pgsql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';port=' . DB_PORT, DB_USER, DB_PASSWORD);
+            $db = Database::connect();
 
             $statement = $db->query('SELECT * FROM ' . static::$table);
+
+            if(!$statement) {
+                throw new \Exception('['.$db->errorInfo()[0].'] SQL ' . $db->errorInfo()[2]);
+            }
 
             return $statement->fetchAll(PDO::FETCH_CLASS, static::class);
         }
         catch (\Exception $e) {
             echo $e->getMessage() . "\n";
-            return $e;
+            throw $e;
         }
     }
 }

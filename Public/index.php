@@ -1,7 +1,8 @@
 <?php
 
-// Database config
+// Application configuration files
 require('../Config/database.php');
+include("../Config/config.php");
 
 // Autoloader
 require(__DIR__ . '/../autoloader.php');
@@ -10,7 +11,6 @@ require(__DIR__ . '/../autoloader.php');
 use Framework\View;
 use Framework\Route;
 use Framework\HttpRequest;
-include("../Config/config.php");
 
 // Import every user controller
 foreach (glob("../Controllers/*.php") as $filename)
@@ -18,9 +18,9 @@ foreach (glob("../Controllers/*.php") as $filename)
     include_once($filename);
 }
 
-// Get every user defined route
+// Get every user defined route & view
 $routes = require("../Config/routes.php");
-$mappingViews = require("../Config/views.php");
+$views = require("../Config/views.php");
 
 // Get client request
 $request = new HttpRequest();
@@ -59,12 +59,12 @@ if ($result instanceof View) {
     * gets the html string from the html file, 
     * replaces the %APP_NAME% with the string "test" and then echoes the html in order to display it. 
     */
-    if( array_key_exists($result->getName(), $mappingViews) ) {
-        $htmlName = $mappingViews[$result->getName()];
+    if( array_key_exists($result->getName(), $views) ) {
+        $htmlName = $views[$result->getName()];
         $template = file_get_contents("../template.html");
-        $content = file_get_contents("../Views/".$htmlName);
+        $content = file_get_contents("../Views/" . $htmlName);
         $html = str_replace("%APP_NAME%", APP_NAME, $template);
-        $html = str_replace("%DATA%",$content,$html);
+        $html = str_replace("%DATA%", $content, $html);
         echo($html);
     }
 } // Otherwise it will be returned as JSON data

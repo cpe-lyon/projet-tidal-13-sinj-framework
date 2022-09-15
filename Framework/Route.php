@@ -2,7 +2,7 @@
 
 namespace Framework;
 
-class Route
+final class Route
 {
     private string $method;
     private string $name;
