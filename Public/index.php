@@ -32,6 +32,7 @@ foreach ($routes as $route) {
             $controllerName = $route->getController();
             $controller = new $controllerName;
             $view = $controller->{$route->getFunction()}($request);
+            break;
         }
         else {
             // If the route was found but the client methods is not corresponding, loads 405 error page
