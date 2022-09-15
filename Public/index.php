@@ -31,19 +31,27 @@ foreach ($routes as $route) {
             // Calls the function associated with the controller that was defined by the user in routes.php
             $controllerName = $route->getController();
             $controller = new $controllerName;
-            $view = $controller->{$route->getFunction()}($request);
+            $result = $controller->{$route->getFunction()}($request);
             break;
         }
         else {
             // If the route was found but the client methods is not corresponding, loads 405 error page
-            $view = new View('error', ['code' => 405 , 'message' => 'Bad method for route ' . $request->getUrl()]);
+            $result = new View('error', ['code' => 405 , 'message' => 'Bad method for route ' . $request->getUrl()]);
         }
     }
 }
 
 // If no view was returned, loads 404 error page
-if (!isset($view)) {
-    $view = new View('error', ['code' => 404 , 'message' => 'No route mapped for ' . $request->getUrl()]);
+if (!isset($result)) {
+    $result = new View('error', ['code' => 404 , 'message' => 'No route mapped for ' . $request->getUrl()]);
 }
 
-var_dump($view);
+// If the returned data from the controller is a View
+if ($result instanceof View) {
+    var_dump($result);
+}
+// Otherwise it will be returned as JSON data
+else {
+    header('Content-Type: application/json; charset=UTF-8');
+    echo json_encode($result);
+}
