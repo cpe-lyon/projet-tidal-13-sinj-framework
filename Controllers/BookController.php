@@ -15,4 +15,8 @@ class BookController
     public function getAll(HttpRequest $request) {;
         return Book::getAll();
     }
+
+    public function find(HttpRequest $request) {;
+        return Book::find($request->getParams()['id']);
+    }
 }

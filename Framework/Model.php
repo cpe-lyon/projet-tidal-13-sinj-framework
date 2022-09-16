@@ -49,6 +49,11 @@ abstract class Model
         }
     }
 
+    /**
+     * Get every row of the table
+     * @return array|false
+     * @throws \Exception
+     */
     public static final function getAll() {
         try {
             $db = Database::connect();
@@ -60,6 +65,30 @@ abstract class Model
             }
 
             return $statement->fetchAll(PDO::FETCH_CLASS, static::class);
+        }
+        catch (\Exception $e) {
+            echo $e->getMessage() . "\n";
+            throw $e;
+        }
+    }
+
+    /**
+     * Find row by id
+     * @return array|false
+     * @throws \Exception
+     */
+    public static final function find(int $id) {
+        try {
+            $db = Database::connect();
+
+            $statement = $db->prepare('SELECT * FROM ' . static::$table . ' WHERE id = ?');
+
+            if(!$statement) {
+                throw new \Exception('['.$db->errorInfo()[0].'] SQL ' . $db->errorInfo()[2]);
+            }
+
+            $statement->execute([$id]);
+            return $statement->fetchObject(static::class) ?:null;
         }
         catch (\Exception $e) {
             echo $e->getMessage() . "\n";
