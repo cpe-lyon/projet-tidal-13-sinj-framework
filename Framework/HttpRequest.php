@@ -27,18 +27,40 @@ final class HttpRequest
         }
     }
 
+    /**
+     * Returns request URL
+     * @return mixed|string
+     */
     public function getUrl()
     {
         return $this->url;
     }
 
+    /**
+     * Returns request method
+     * @return mixed
+     */
     public function getMethod()
     {
         return $this->method;
     }
 
+    /**
+     * Returns every request param
+     * @return array
+     */
     public function getParams()
     {
         return $this->params;
+    }
+
+    /**
+     * Returns request's param for specific key, null if not found
+     * @param string $key
+     * @return mixed
+     */
+    public function get(string $key)
+    {
+        return $this->params[$key];
     }
 }

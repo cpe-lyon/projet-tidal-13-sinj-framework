@@ -8,7 +8,7 @@ class BookController
 {
     public function createBook(HttpRequest $request) {
         $book = new Book();
-        $book->name = $request->getParams()['name'];
+        $book->name = $request->get('name');
         return $book->create();
     }
 
@@ -17,6 +17,6 @@ class BookController
     }
 
     public function find(HttpRequest $request) {;
-        return Book::find($request->getParams()['id']);
+        return Book::find($request->get('id'));
     }
 }
