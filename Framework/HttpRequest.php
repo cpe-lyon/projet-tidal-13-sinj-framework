@@ -13,10 +13,11 @@ final class HttpRequest
         $this->url = explode('?', $_SERVER['REQUEST_URI'])[0];
         $this->method = $_SERVER['REQUEST_METHOD'];
 
+        // Parses the POST method params
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $this->params = $_POST;
         }
-        // Parses the GET methods params
+        // Parses the GET method params
         elseif (isset($_SERVER['QUERY_STRING']) && $_SERVER['REQUEST_METHOD'] == "GET") {
             $rawParams = explode('&', $_SERVER['QUERY_STRING']);
 
