@@ -24,7 +24,7 @@ class BookController
     }
 
     public function getAll(HttpRequest $request) {
-        return Book::getAll();
+        return new View('all_books', ['BOOKS' => array_column(Book::getAll(), 'name') ]);
     }
 
     public function find(HttpRequest $request) {

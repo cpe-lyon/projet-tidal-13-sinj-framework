@@ -1,3 +1,3 @@
-document.getElementById('title').innerHTML = "tu tournes Julo";
+document.getElementById('title').innerHTML = 'tu tournes Julo';
 
 tutournes();

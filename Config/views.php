@@ -1,16 +1,16 @@
 <?php
 
 return [
-    'test'=>[
+    'all_books' => [
         'html' => 'test.html',
         'css' => ['test.css'],
         'js' => [
             'headjs' => ['testhead.js'],
-            'bottomjs' =>['testfooter.js']
+            'bottomjs' => ['testfooter.js']
         ]
     ],
-    'error404'=>[
-        'html'=> '404.html',
+    'error' => [
+        'html' => '404.html',
         'css' => ['404.css']
     ]
 ];

@@ -8,7 +8,7 @@ use Framework\Route;
 require(__DIR__ . '/../autoloader.php');
 
 // Import every user controller
-foreach (glob("Controllers/*.php") as $filename)
+foreach (glob('Controllers/*.php') as $filename)
 {
     include_once($filename);
 }
@@ -45,7 +45,7 @@ echo "    OK\n";
 echo " ·Routes\n";
 
 // Get every user defined route
-$routes = require("Config/routes.php");
+$routes = require('Config/routes.php');
 
 if (!is_array($routes)) {
     echo "[Error] routes.php must return an array\n";

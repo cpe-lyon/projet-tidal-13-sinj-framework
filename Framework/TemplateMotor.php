@@ -15,17 +15,17 @@ class TemplateMotor {
         /* Checking if the view name exists in the views mapping array. 
         * If it does, it gets the html name from the views mapping, 
         * gets the html string from the html file, 
-        * replaces the %APP_NAME% with the string "test" and then echoes the html in order to display it. 
+        * replaces the %APP_NAME% with the string 'test' and then echoes the html in order to display it.
         */
         if( array_key_exists($result->getName(), $this->mappingViews) ) {
             $name = $this->mappingViews[$result->getName()];
 
             //APP_NAME manager
             $htmlName = $name['html'];
-            $template = file_get_contents("../template.html");
+            $template = file_get_contents('../template.html');
 
             //A modifier pour un truc générique
-            //$html = str_replace("%APPNAME%", APPNAME, $template);
+            //$html = str_replace('%APP_NAME%', APP_NAME, $template);
             $html = $this->replaceConstantReference($template);
             $css = "";
 
@@ -37,9 +37,9 @@ class TemplateMotor {
                     $css .= '<link rel="stylesheet" href="./style/css/'.$cssName.'">';
                 }
             }
-            $html = str_replace("%CSS%", $css, $html); 
+            $html = str_replace('%CSS%', $css, $html);
             
-            $headjs = "";
+            $headjs = '';
             // if head js scripts exist, include it
             if( !empty( $name['js']['headjs'] ) ) {
                 $jsArray = $name['js']['headjs'];
@@ -48,19 +48,19 @@ class TemplateMotor {
                     $headjs .= '<script type="text/javascript" src="./scripts/'.$jsName.'"></script>';
                 }
             }
-            $html = str_replace("%HEADJS%", $headjs, $html); 
+            $html = str_replace('%HEADJS%', $headjs, $html);
             
             //APP
-            $content = file_get_contents("../Views/".$htmlName);
+            $content = file_get_contents('../Views/'.$htmlName);
             $values = $result->getValues();
             $content = $this->replaceConstantReference($content);
             $content = $this->replaceAbstractTag($content,$result,$values);
             $content = $this->replaceAbstractReference($content,$result,$values);
             
 
-            $html = str_replace("%DATA%", $content, $html);
+            $html = str_replace('%DATA%', $content, $html);
 
-            $bottomjs = "";
+            $bottomjs = '';
             // if bottom js scripts exist, include it
             if( !empty( $name['js']['bottomjs'] ) ) {
                 $jsArray = $name['js']['bottomjs'];

@@ -1,3 +1,3 @@
 function tutournes() {
-    console.log("tu tournes hehe");
+    console.log('tu tournes hehe');
 }

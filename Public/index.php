@@ -2,7 +2,7 @@
 
 // Application configuration files
 require('../Config/database.php');
-require("../Config/config.php");
+require('../Config/config.php');
 
 // Autoloader
 require(__DIR__ . '/../autoloader.php');
@@ -14,14 +14,14 @@ use Framework\HttpRequest;
 use Framework\TemplateMotor;
 
 // Import every user controller
-foreach (glob("../Controllers/*.php") as $filename)
+foreach (glob('../Controllers/*.php') as $filename)
 {
     include_once($filename);
 }
 
 // Get every user defined route & view
-$routes = require("../Config/routes.php");
-$mappingViews = require("../Config/views.php");
+$routes = require('../Config/routes.php');
+$mappingViews = require('../Config/views.php');
 
 // Get client request
 $request = new HttpRequest();
