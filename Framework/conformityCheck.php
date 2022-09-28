@@ -91,6 +91,13 @@ echo "    OK\n";
 echo " ·Database\n";
 require("Config/database.php");
 
+if (DB_DRIVER === 'DB_DRIVER') {
+    exit();
+}
+if (!is_string(DB_DRIVER)) {
+    echo "[Error] DB_DRIVER must be either pgsql or mysql\n";
+    exit();
+}
 if (DB_HOST === 'DB_HOST') {
     exit();
 }
