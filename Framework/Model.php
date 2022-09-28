@@ -13,6 +13,12 @@ abstract class Model
     public static string $table;
 
     /**
+     * Table id
+     * @var string
+     */
+    public static string $id = 'id';
+
+    /**
      * Inserts the model instance in the database. Returns the new row if the insert was successful, otherwise returns false.
      * @return \stdClass|false|\Exception
      * @throws \Exception
@@ -32,10 +38,10 @@ abstract class Model
                 }
             }
 
-            $statement = $db->prepare('INSERT INTO ' . $this::$table . $fields . ' VALUES ('.$values.') RETURNING id');
+            $statement = $db->prepare('INSERT INTO ' . static::$table . $fields . ' VALUES ('.$values.') RETURNING '. static::$id);
 
             if ($statement->execute()) {
-                $findNewRow = $db->prepare('SELECT * FROM ' . static::$table . ' WHERE id = ?');
+                $findNewRow = $db->prepare('SELECT * FROM ' . static::$table . ' WHERE ' . static::$id . ' = ?');
                 $findNewRow->execute([$db->lastInsertId()]);
                 return $findNewRow->fetchObject(static::class);
             }
@@ -81,7 +87,7 @@ abstract class Model
         try {
             $db = Database::connect();
 
-            $statement = $db->prepare('SELECT * FROM ' . static::$table . ' WHERE id = ?');
+            $statement = $db->prepare('SELECT * FROM ' . static::$table . ' WHERE ' . static::$id . ' = ?');
 
             if(!$statement) {
                 throw new \Exception('['.$db->errorInfo()[0].'] SQL ' . $db->errorInfo()[2]);
