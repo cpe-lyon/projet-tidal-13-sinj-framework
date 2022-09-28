@@ -12,11 +12,22 @@ class BookController
         return $book->create();
     }
 
-    public function getAll(HttpRequest $request) {;
+    public function deleteBook(HttpRequest $request) {
+        $book = Book::find($request->get('id'));
+        return $book->delete();
+    }
+
+    public function updateBook(HttpRequest $request) {
+        $book = Book::find($request->get('id'));
+        $book->name = 'LOL';
+        return $book->update();
+    }
+
+    public function getAll(HttpRequest $request) {
         return Book::getAll();
     }
 
-    public function find(HttpRequest $request) {;
+    public function find(HttpRequest $request) {
         return Book::find($request->get('id'));
     }
 }

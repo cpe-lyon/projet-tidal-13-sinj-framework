@@ -56,6 +56,66 @@ abstract class Model
     }
 
     /**
+     * Removes an instance from database
+     * @return bool|false
+     * @throws \Exception
+     */
+    public final function delete() {
+        try {
+            $db = Database::connect();
+
+            $statement = $db->prepare('DELETE FROM ' . static::$table . ' WHERE ' . static::$id . ' = ' . $this->id);
+
+            if(!$statement) {
+                throw new \Exception('['.$db->errorInfo()[0].'] SQL ' . $db->errorInfo()[2]);
+            }
+
+            return $statement->execute();
+        }
+        catch (\Exception $e) {
+            echo $e->getMessage() . "\n";
+            throw $e;
+        }
+    }
+
+    /**
+     * Update an instance from database
+     * @return bool|false
+     * @throws \Exception
+     */
+    public final function update() {
+        try {
+            $db = Database::connect();
+
+
+            $values = '';
+            foreach ((array)$this as $index => $value) {
+                if (is_numeric($value) && !is_string($value)) {
+                    $values .= $index . '=' .$value . ',';
+                }
+                else {
+                    $values .= $index . "='" .$value . "',";
+                }
+            }
+
+            $values = substr($values, 0, -1);
+
+            $statement = $db->prepare('UPDATE ' . static::$table . ' SET ' . $values . ' WHERE '. static::$id . ' = ' . $this->id);
+
+            if(!$statement) {
+                throw new \Exception('['.$db->errorInfo()[0].'] SQL ' . $db->errorInfo()[2]);
+            }
+
+            return $statement->execute();
+        }
+        catch (\Exception $e) {
+            echo $e->getMessage() . "\n";
+            throw $e;
+        }
+    }
+
+
+    /**
      * Get every row of the table
      * @return array|false
      * @throws \Exception
@@ -80,7 +140,7 @@ abstract class Model
 
     /**
      * Find row by id
-     * @return array|false
+     * @return Model|false
      * @throws \Exception
      */
     public static final function find(int $id) {
