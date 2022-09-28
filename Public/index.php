@@ -11,6 +11,7 @@ require(__DIR__ . '/../autoloader.php');
 use Framework\View;
 use Framework\Route;
 use Framework\HttpRequest;
+use Framework\TemplateMotor;
 
 // Import every user controller
 foreach (glob("../Controllers/*.php") as $filename)
@@ -20,7 +21,7 @@ foreach (glob("../Controllers/*.php") as $filename)
 
 // Get every user defined route & view
 $routes = require("../Config/routes.php");
-$views = require("../Config/views.php");
+$mappingViews = require("../Config/views.php");
 
 // Get client request
 $request = new HttpRequest();
@@ -53,20 +54,11 @@ if (!isset($result)) {
 
 // If the returned data from the controller is a View
 if ($result instanceof View) {
-    
-    /* Checking if the view name exists in the views mapping array. 
-    * If it does, it gets the html name from the views mapping, 
-    * gets the html string from the html file, 
-    * replaces the %APP_NAME% with the string "test" and then echoes the html in order to display it. 
-    */
-    if( array_key_exists($result->getName(), $views) ) {
-        $htmlName = $views[$result->getName()];
-        $template = file_get_contents("../template.html");
-        $content = file_get_contents("../Views/" . $htmlName);
-        $html = str_replace("%APP_NAME%", APP_NAME, $template);
-        $html = str_replace("%DATA%", $content, $html);
-        echo($html);
-    }
+
+    $templateMotor = new TemplateMotor($mappingViews);
+    $html = $templateMotor->HTMLrendering($result);
+    echo($html);
+
 } // Otherwise it will be returned as JSON data
 else {
     header('Content-Type: application/json; charset=UTF-8');
