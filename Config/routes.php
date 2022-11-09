@@ -12,4 +12,7 @@ return [
 
     // Tests
     new Route('GET', '/test', TestController::class, 'test'),
+
+    //Tests redirection
+    new Route('GET', '/redirect/test', RedirectController::class, 'redirection')
 ];
