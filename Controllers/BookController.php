@@ -7,8 +7,14 @@ use Models\Book;
 class BookController
 {
     public function createBook(HttpRequest $request) {
+        $name = $request->get('name');
+
+        if ($name == null) {
+            return 'test';
+        }
+
         $book = new Book();
-        $book->name = $request->get('name');
+        $book->name = $name;
         return $book->create();
     }
 
