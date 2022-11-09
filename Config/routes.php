@@ -13,4 +13,7 @@ return [
     // Tests
     new Route('GET', '/test', TestController::class, 'test'),
     new Route('GET', '/accessibility', AccessibilityController::class,'accessibility'),
+
+    //Tests redirection
+    new Route('GET', '/redirect/test', RedirectController::class, 'redirection')
 ];
