@@ -42,3 +42,10 @@ Contributors :
 - Julien CAPOSIENA
 
 Deadline :
+
+
+RAF : 
+
+Gestion d'erreur sur le TemplateMotor
+Terminer la fonction de rapport d'accessibilité et définir le format du compte-rendu
+Finir le site de demonstration de fonctionnement du framework
