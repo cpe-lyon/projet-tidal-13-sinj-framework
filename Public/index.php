@@ -12,6 +12,7 @@ use Framework\View;
 use Framework\Route;
 use Framework\HttpRequest;
 use Framework\TemplateMotor;
+use Framework\AccessibilityCheck;
 
 // Import every user controller
 foreach (glob('../Controllers/*.php') as $filename)
@@ -57,6 +58,11 @@ if ($result instanceof View) {
 
     $templateMotor = new TemplateMotor($mappingViews);
     $html = $templateMotor->HTMLrendering($result);
+
+    $accessibilityCheck = new AccessibilityCheck($mappingViews,$html);
+    $accessibilityCheck->parse_html();
+
+    //Accessibility calling 
     echo($html);
 
 } // Otherwise it will be returned as JSON data

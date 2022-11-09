@@ -12,5 +12,9 @@ return [
     'error' => [
         'html' => '404.html',
         'css' => ['404.css']
+    ],
+    'accessibility' =>[
+        'html' => 'accessibility.html',
+        'css' => ['accessibility.css']
     ]
 ];

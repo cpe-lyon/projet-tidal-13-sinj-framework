@@ -12,4 +12,5 @@ return [
 
     // Tests
     new Route('GET', '/test', TestController::class, 'test'),
+    new Route('GET', '/accessibility', AccessibilityController::class,'accessibility'),
 ];
