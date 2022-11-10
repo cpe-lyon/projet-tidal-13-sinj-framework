@@ -56,13 +56,16 @@ if (!isset($result)) {
 // If the returned data from the controller is a View
 if ($result instanceof View) {
 
+    //html rendering
+    
     $templateMotor = new TemplateMotor($mappingViews);
     $html = $templateMotor->HTMLrendering($result);
 
+    //Checking if all image have alt attribute
     $accessibilityCheck = new AccessibilityCheck($mappingViews,$html);
-    $accessibilityCheck->parse_html();
+    $accessibilityCheck->is_picture_alt_exists();
 
-    //Accessibility calling 
+    //echo html content
     echo($html);
 
 } // Otherwise it will be returned as JSON data

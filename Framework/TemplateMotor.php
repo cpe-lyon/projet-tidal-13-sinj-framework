@@ -40,7 +40,7 @@ class TemplateMotor {
                 $cssArray = $name['css'];
                 
                 foreach($cssArray as $cssName){
-                    $css .= '<link rel="stylesheet" href="./style/css/'.$cssName.'">';
+                    $css .= '<link rel="stylesheet" href="/style/css/'.$cssName.'">';
                 }
             }
             $html = str_replace('%CSS%', $css, $html);
@@ -51,7 +51,7 @@ class TemplateMotor {
                 $jsArray = $name['js']['headjs'];
                 
                 foreach($jsArray as $jsName) {
-                    $headjs .= '<script type="text/javascript" src="./scripts/'.$jsName.'"></script>';
+                    $headjs .= '<script type="text/javascript" src="/scripts/'.$jsName.'"></script>';
                 }
             }
             $html = str_replace('%HEADJS%', $headjs, $html);
@@ -72,7 +72,7 @@ class TemplateMotor {
                 $jsArray = $name['js']['bottomjs'];
                 
                 foreach($jsArray as $jsName) {
-                    $bottomjs .= '<script type="text/javascript" src="./scripts/'.$jsName.'"></script>';
+                    $bottomjs .= '<script type="text/javascript" src="/scripts/'.$jsName.'"></script>';
                 }
             }
             $html = str_replace("%BOTTOMJS%", $bottomjs, $html);

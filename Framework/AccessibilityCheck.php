@@ -12,12 +12,15 @@ class AccessibilityCheck {
         $this->html = $html;
     }
 
-    public function parse_html() {
-        preg_match_all('|<[^>]+>(.*)</[^>]+>|U', $this->html, $match);
-        var_dump($match[0]);
-        while ($match[0] != NULL) {
-            preg_match_all('|<[^>]+>(.*)</[^>]+>|U', $match, $match);
-            var_dump($match[0]);
+    public function is_picture_alt_exists() {
+        preg_match_all('/<img(.*?)>/s',$this->html, $match);
+
+        for ($i=0; $i < count($match[0]); $i++) { 
+            preg_match('/alt="(.*?)"/s', $match[0][$i], $alt);
+            preg_match('/src="(.*?)"/s', $match[0][$i], $src);
+            if(count($alt) ==0){
+                $this->debug_to_console("WARNING : no alt attribute on image with src=".$src[1]);
+            }
         }
     }
 
@@ -26,7 +29,7 @@ class AccessibilityCheck {
         if (is_array($output))
             $output = implode(',', $output);
     
-        echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+        echo "<script>console.log('" . $output . "' );</script>";
     }
 }
 ?>

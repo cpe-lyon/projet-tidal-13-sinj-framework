@@ -7,41 +7,37 @@
         LOL JULO IL M'A AGRESSE IL AURA FAIT CA EN 30 MIN
     </div>
 
-    <div>
-        %EMAIL%
-    </div>
+    <div>%EMAIL%</div>
 
-    <div>
-        %TEST_RATE%
-    </div>
-    <div>
-        <a href="/redirect/test">test_redirection</a>
-    </div>
+    <div>%TEST_RATE%</div>
+
+    <img src="/images/get_joshued.png">
+
     <ul>
-        <sinj-for source="BOOKS" element="BOOK">
+        <sinj-for source=" BOOKS " element="BOOK ">
             <li>
                 %BOOK%
             </li>
         </sinj-for>
     </ul>
+    <img src="/images/get_joshued.png ">
     <div>Ajout d'un livre</div>
-    <form action="/book" method="post">
-        Nom du livre <input type="text" name="name" id="name" />
-        <input type="submit">
+    <form action="/book " method="post ">
+        Nom du livre <input type="text " name="name " id="name " />
+        <input type="submit ">
     </form>
     <br>
     <div>Suppression d'un livre</div>
-    <form action="/book/delete" method="post">
-        ID du livre <input type="number" name="id" id="id" />
-        <input type="submit">
+    <form action="/book/delete " method="post ">
+        ID du livre <input type="number " name="id " id="id " />
+        <input type="submit ">
     </form>
     <br>
-    
+
     <div>Modification d'un livre</div>
-    <form action="/book/update" method="post">
-        Id du livre <input type="number" name="id" id="id" />
-        Nom du livre <input type="text" name="name" id="name" />
-        <input type="submit">
+    <form action="/book/update " method="post ">
+        Id du livre <input type="number " name="id " id="id " /> Nom du livre <input type="text " name="name " id="name " />
+        <input type="submit ">
     </form>
 
 </body>
