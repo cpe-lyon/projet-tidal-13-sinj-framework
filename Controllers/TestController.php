@@ -1,11 +1,11 @@
 <?php
-
+use Framework\View;
 use Framework\Database;
 use Framework\HttpRequest;
 
 class TestController
 {
     public function test(HttpRequest $request) {
-        return Database::query('SELECT * FROM books WHERE id > ? OR id = ?', [10, 1]);
+        return new View('all_books',["TEST_RATE"=>"test"]);
     }
 }

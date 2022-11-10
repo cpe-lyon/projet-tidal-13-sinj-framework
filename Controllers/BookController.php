@@ -19,7 +19,7 @@ class BookController
 
     public function updateBook(HttpRequest $request) {
         $book = Book::find($request->get('id'));
-        $book->name = 'LOL';
+        $book->name = $request->get('name');
         return $book->update();
     }
 

@@ -11,6 +11,14 @@ class TemplateMotor {
         $this->mappingViews = $mappingViews;
     }
 
+    /**
+     * It gets the html name from the views mapping, gets the html string from the html file, replaces
+     * the %APP_NAME% with the string 'test' and then echoes the html in order to display it.
+     * 
+     * @param result the result of the controller's action
+     * 
+     * @return html html format string with the replaced values
+     */
     public function HTMLrendering($result) {
         /* Checking if the view name exists in the views mapping array. 
         * If it does, it gets the html name from the views mapping, 
@@ -24,8 +32,6 @@ class TemplateMotor {
             $htmlName = $name['html'];
             $template = file_get_contents('../template.html');
 
-            //A modifier pour un truc générique
-            //$html = str_replace('%APP_NAME%', APP_NAME, $template);
             $html = $this->replaceConstantReference($template);
             $css = "";
 
@@ -54,13 +60,13 @@ class TemplateMotor {
             $content = file_get_contents('../Views/'.$htmlName);
             $values = $result->getValues();
             $content = $this->replaceConstantReference($content);
-            $content = $this->replaceAbstractTag($content,$result,$values);
-            $content = $this->replaceAbstractReference($content,$result,$values);
+            $content = $this->replaceAbstractTag($content, $values);
+            $content = $this->replaceAbstractReference($content, $values);
             
-
             $html = str_replace('%DATA%', $content, $html);
 
             $bottomjs = '';
+
             // if bottom js scripts exist, include it
             if( !empty( $name['js']['bottomjs'] ) ) {
                 $jsArray = $name['js']['bottomjs'];
@@ -75,6 +81,13 @@ class TemplateMotor {
         }
     }
 
+    /**
+     * It replaces all the constants in the content with their values.
+     * 
+     * @param string content The content to replace the constants in.
+     * 
+     * @return content of the file with the constants replaced.
+     */
     protected function replaceConstantReference(string $content) {
         $constants = get_defined_constants(true);
         
@@ -84,7 +97,15 @@ class TemplateMotor {
         return $content;
     }
 
-    protected function replaceAbstractReference(string $content, $result, $values){
+    /**
+     * It takes a string, finds all the %tags% in it, and replaces them with the values in the array.
+     * 
+     * @param string content The content of the file template
+     * @param values array of values to be replaced
+     * 
+     * @return content content of the file.
+     */
+    protected function replaceAbstractReference(string $content, $values) {
         preg_match_all('/%(.*?)%/s', $content, $match);
 
         foreach($match[1] as $value) {
@@ -97,7 +118,8 @@ class TemplateMotor {
         return $content;
     }
 
-    protected function replaceAbstractTag(string $content, $result, $values) {
+    //Replace abstract foor loop include by SINJ Framework to the real HTML
+    protected function replaceAbstractTag(string $content, $values) {
         preg_match('/<sinj-for source="(.*?)" element="(.*?)">(.*?)<\/sinj-for>/s', $content, $match);
         $source = $match[1];
         $element = $match[2];
@@ -110,9 +132,5 @@ class TemplateMotor {
         $content = str_replace($match[0], $test, $content);
         return $content;
     }
-
-    
-
-
 }
 ?>
