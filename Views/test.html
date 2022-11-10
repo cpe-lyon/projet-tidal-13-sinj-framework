@@ -22,5 +22,24 @@
             </li>
         </sinj-for>
     </ul>
+    <div>Ajout d'un livre</div>
+    <form action="/book" method="post">
+        Nom du livre <input type="text" name="name" id="name" />
+        <input type="submit">
+    </form>
+    <br>
+    <div>Suppression d'un livre</div>
+    <form action="/book/delete" method="post">
+        ID du livre <input type="number" name="id" id="id" />
+        <input type="submit">
+    </form>
+    <br>
+    
+    <div>Modification d'un livre</div>
+    <form action="/book/update" method="post">
+        Id du livre <input type="number" name="id" id="id" />
+        Nom du livre <input type="text" name="name" id="name" />
+        <input type="submit">
+    </form>
 
 </body>
