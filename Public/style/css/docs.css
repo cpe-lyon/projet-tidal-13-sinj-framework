@@ -1,0 +1,77 @@
+.container {
+    width: 80%;
+    margin: 50px 0;
+
+    border-radius: 10px;
+}
+
+.docs-button-container {
+    width: 15%;
+    padding: 10px;
+
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.doc-button {
+    width: 100%;
+
+    color: white;
+    font-weight: lighter;
+    background: none;
+
+    border: none;
+    outline: none;
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.doc-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transition: 0.3s;
+}
+
+.doc-button:active {
+    background: rgba(163, 199, 214, 0.4);
+}
+
+hr {
+    margin: 10px 0;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.docs-container {
+    width: 85%;
+    padding: 20px;
+
+    color: mintcream;
+
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.docs {
+    display: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.docs h1 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.docs .docs-content {
+    padding: 20px;
+}
+
+.hljs {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: white!important;
+}

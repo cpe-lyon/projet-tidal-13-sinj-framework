@@ -1,0 +1,138 @@
+<body class="bg-fourth">
+<header class="flex row bg-ternary header">
+    <div class="flex column justify-around items-center float-left link-container">
+        <a class="no-decoration text-bold text-white bg-secondary header-link" href="/">Home</a>
+        <a class="no-decoration text-bold text-white bg-secondary header-link" href="/about">About</a>
+    </div>
+
+    <div class="flex row justify-center margin-x-auto items-center">
+        <div class="title text-primary"><b>SINJ</b> <div class="text-thin">Framework</div></div>
+        <img class="icon text-primary" src="favicon.svg" />
+    </div>
+
+    <a
+            class="margin-y-auto no-decoration text-thin text-primary float-right"
+            href="https://github.com/cpe-lyon/projet-tidal-13-sinj-framework"
+            style="margin-right: 20px"
+    >
+        GitHub &#8599;
+    </a>
+</header>
+
+<main class="flex column justify-center items-center">
+    <div class="flex row justify-center container bg-fourth">
+        <div class="bg-secondary docs-button-container">
+            <button onclick="openDocs(event, 'introduction')" class="doc-button"><b>Introduction</b></button>
+            <button onclick="openDocs(event, 'started')" class="doc-button">Get started</button>
+            <hr>
+            <button onclick="openDocs(event, 'routing')" class="doc-button">Routing</button>
+            <button onclick="openDocs(event, 'controllers')" class="doc-button">Controllers</button>
+            <button onclick="openDocs(event, 'views')" class="doc-button">Views & Templating</button>
+            <button onclick="openDocs(event, 'database')" class="doc-button">Database</button>
+            <button onclick="openDocs(event, 'ORM')" class="doc-button">ORM</button>
+        </div>
+        <div class="bg-fourth docs-container">
+            <div id="introduction" class="docs">
+                <h1 class="text-center">Introduction</h1>
+                <hr>
+                <div class="docs-content">
+                    <p>
+                        SINJ Framework is a PHP Library written with PHP itself.
+                        It will help you to create a WEB server the easiest way.
+                        It uses PHP 7.4 and was written for a school projet of the french engineering school CPE Lyon.
+                    </p>
+                    <br>
+                    <p>For now, SINJ Framework does provide simple and lightweight features such as :</p>
+                    <ul style="margin: 10px 40px">
+                        <li>Router and routes</li>
+                        <li>Controllers</li>
+                        <li>Autoloader and namespaces</li>
+                        <li>Simple templating motor</li>
+                        <li>Simple ORM</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="started" class="docs">
+                <h1 class="text-center">Getting started</h1>
+                <hr>
+                <div class="docs-content">
+
+                </div>
+            </div>
+            <div id="routing" class="docs">
+                <h1 class="text-center">Routing</h1>
+                <hr>
+                <div class="docs-content">
+                    <p>The routing system is made to be simple.</p>
+                    <p>
+                        All your routes ake kept in a file named <b>routes.php</b> in the <b>Config</b> folder.
+                        This file does return the array of the mapped routes.
+                    </p>
+                    <br>
+                    <p>Take a look at the example :</p>
+                    <pre><code class="language-php">?php
+
+use Framework\Route;
+
+return [
+    // Books
+    new Route('POST', '/book', BookController::class, 'createBook'),
+    new Route('GET', '/book/delete', BookController::class, 'deleteBook'),
+    new Route('GET', '/book/update', BookController::class, 'updateBook'),
+    new Route('GET', '/book/all', BookController::class, 'getAll'),
+    new Route('GET', '/book/find', BookController::class, 'find'),
+];</code></pre>
+                    <p>
+                        The methods you can use are <b>GET</b> and <b>POST</b>. The routes need to start with a "/".
+                        The linked controllers need to be placed in the <b>Controllers</b> folder,
+                        and the controller's function need to be named after a real function that is in the controller
+                        otherwise it won't work.
+                    </p>
+                </div>
+            </div>
+            <div id="controllers" class="docs">
+                <h1 class="text-center">Controllers</h1>
+                <hr>
+                <div class="docs-content">
+                    <pre><code class="language-php">?php
+
+use Framework\View;
+
+class SinjController
+{
+    public function index() {
+        return new View('index');
+    }
+
+    public function about() {
+        return new View('about');
+    }
+
+    public function docs() {
+        return new View('docs');
+    }
+
+    public function test() {
+        return [
+            "test" => 3
+        ];
+    }
+}
+                    </code></pre>
+                </div>
+            </div>
+            <div id="views" class="docs">
+                <p>views</p>
+            </div>
+            <div id="database" class="docs">
+                <p>database</p>
+            </div>
+            <div id="ORM" class="docs">
+                <p>ORM</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="background"></div>
+</main>
+</body>

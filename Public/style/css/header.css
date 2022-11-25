@@ -1,0 +1,46 @@
+.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 125px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    font-size: 2.5em;
+    letter-spacing: 5px;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+.icon {
+    display: inline-block;
+    width: 90px;
+    height: 90px;
+    filter: invert(1);
+    transform: translateY(-0.3px);
+    margin-left: 20px;
+}
+
+.link-container {
+    position: absolute;
+    margin: 15px 20px 15px 25px;
+}
+
+.header-link {
+    width: 125px;
+
+    margin: 5px 0;
+    padding: 10px 10px;
+
+    color: white;
+    text-align: center;
+
+    border-radius: 10px;
+
+    transition: 0.5s;
+}
+
+.header-link:hover {
+    transform: scale(1.025);
+    transition: 1s;
+}

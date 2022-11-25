@@ -1,0 +1,149 @@
+* {
+    font-family: Helvetica, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+/* CUSTOM */
+.text-primary {
+    color: #A3C7D6;
+}
+
+.text-secondary {
+    color: #9F73AB;
+}
+
+.text-ternary {
+    color: #624F82;
+}
+
+.text-fourth {
+    color: #3F3B6C;
+}
+
+.bg-primary {
+    background: #A3C7D6;
+}
+
+.bg-secondary {
+    background: #9F73AB;
+}
+
+.bg-ternary {
+    background: #624F82;
+}
+
+.bg-fourth {
+    background: #3F3B6C;
+}
+
+.background {
+    position: fixed;
+
+    left: -10px;
+    top: -10px;
+
+    width: 105%;
+    height: 105%;
+
+    filter: blur(5px) brightness(80%);
+    background-image: url("../../images/galaxy.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 105% 105%;
+
+    z-index: -1;
+}
+
+/* POSITION */
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+/* FLEX */
+.flex {
+    display: flex;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+
+.items-center {
+    align-items: center;
+}
+
+.content-center {
+    align-content: center;
+}
+
+/* WIDTH & HEIGHT */
+.full-width {
+    width: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
+/* PADDING & MARGIN */
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.margin-x-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.margin-y-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/* TEXT */
+.text-black {
+    color: black;
+}
+
+.text-white {
+    color: white;
+}
+
+.text-bold {
+    font-weight: bolder;
+}
+
+.text-thin {
+    font-weight: lighter;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.no-decoration {
+    text-decoration: none;
+}
